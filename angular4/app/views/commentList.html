@@ -1,0 +1,52 @@
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li ><a ng-href="#/projects">Project</a></li>
+        <li ><a ng-href="#/tasks">Tasks</a></li>
+        <li class="active"><a ng-href="#/comments">Comment</a></li>
+    </ul>
+    <h3 class="text-muted">Comments</h3>
+</div>
+<div>
+    <h5>Add Comments</h5>
+    Description<input type="text" ng-model="description"/>
+    Task<select ng-model="task" ng-options="task.title for task in tasks">
+
+</select>
+    <p><div style="width: 50px" class=" btn-success" ng-click="saveComment()">Add<span class="glyphicon glyphicon-ok"></span></div></p>
+    <table class="table table-hover">
+        <thead>
+        <tr><th colspan="4">List of Created Comments</th></tr>
+        <tr>
+            <th>Sr #</th>
+
+            <th>Description</th>
+            <th>Project</th>
+            <th>Created By</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="comment in commentList">
+            <td ng-init="editMode=false">{{$index + 1}}</td>
+
+            <td>
+                <input type="text" ng-disabled="!editMode" value="{{comment.description}}"/>
+            </td>
+            <td>
+                <select ng-model="comment.task" ng-disabled="!editMode" ng-options="task.title for task in tasks">
+
+                </select>
+
+            </td>
+            <td><p><div style="width: 50px" class="btn-default" ng-click="deleteComment(comment.id,$index)">Delete</div></p></td>
+
+
+            <td><p><div ng-show="!editMode" style="width: 50px" class="btn-default" ng-click="editMode=true">Edit</div>
+                <div ng-show="editMode" style="width: 50px" class="btn-default" ng-click="editMode=false;updateComment(comment)">Save</div></p>
+            </td>
+
+        </tr>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

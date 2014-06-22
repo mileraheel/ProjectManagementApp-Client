@@ -1,0 +1,18 @@
+<html ng-app="projectManagementApp" ng-controller="projectController">
+<div class="modal-header">
+    <h3 class="modal-title">list of accosiated tasks</h3>
+</div>
+<div class="modal-body">
+    <ul>
+        <li ng-repeat="task in tasks">
+            <td>{{$index + 1}}</td>
+            <td>
+                {{task.title}}
+            </td>
+            <td>
+                {{task.description}}
+            </td>
+        </li>
+    </ul>
+</div>
+</html>
